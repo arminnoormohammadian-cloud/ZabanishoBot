@@ -1,4 +1,3 @@
-# app.py
 import os
 import json
 import time
@@ -14,40 +13,41 @@ import openai
 
 app = Flask(__name__)
 
-TELEGRAM_TOKEN = os.environ.get("TELEGRAM_TOKEN")
-OPENAI_API_KEY = os.environ.get("OPENAI_API_KEY")
-SPREADSHEET_ID = os.environ.get("SPREADSHEET_ID")
-GOOGLE_CREDENTIALS = os.environ.get("GOOGLE_CREDENTIALS")
+# ---------- خواندن متغیرهای محیطی ----------
+TELEGRAM_TOKEN = os.environ.get("TELEGRAM_TOKEN")  # از BotFather
+OPENAI_API_KEY = os.environ.get("OPENAI_API_KEY")  # اختیاری، برای AI
+SPREADSHEET_ID = os.environ.get("SPREADSHEET_ID")  # از URL شیت
+GOOGLE_CREDENTIALS = os.environ.get("GOOGLE_CREDENTIALS")  # محتوای JSON فایل سرویس اکانت
 
 if not TELEGRAM_TOKEN:
     raise Exception("لطفا TELEGRAM_TOKEN را در متغیرهای محیطی تنظیم کنید.")
 
-# اگر GOOGLE_CREDENTIALS ست شده، آن را در credentials.json بنویس
+# ---------- راه‌اندازی Google Sheets ----------
 if GOOGLE_CREDENTIALS:
-    with open("credentials.json", "w", encoding="utf-8") as f:
-        f.write(GOOGLE_CREDENTIALS)
+    creds = Credentials.from_service_account_info(
+        json.loads(GOOGLE_CREDENTIALS),
+        scopes=["https://www.googleapis.com/auth/spreadsheets", "https://www.googleapis.com/auth/drive"]
+    )
+    gc = gspread.authorize(creds)
+    sh = gc.open_by_key(SPREADSHEET_ID)
 
-scopes = [
-    "https://www.googleapis.com/auth/spreadsheets",
-    "https://www.googleapis.com/auth/drive"
-]
-creds = Credentials.from_service_account_file("credentials.json", scopes=scopes)
-gc = gspread.authorize(creds)
+    # اطمینان از وجود شیت‌ها
+    try:
+        students_ws = sh.worksheet("students")
+    except Exception:
+        students_ws = sh.add_worksheet(title="students", rows="1000", cols="10")
+        students_ws.append_row(["timestamp", "chat_id", "name", "phone", "level", "notes"])
 
-sh = gc.open_by_key(SPREADSHEET_ID)
+    try:
+        states_ws = sh.worksheet("states")
+    except Exception:
+        states_ws = sh.add_worksheet(title="states", rows="1000", cols="5")
+        states_ws.append_row(["chat_id", "state", "temp"])
+else:
+    raise Exception("GOOGLE_CREDENTIALS در محیط تنظیم نشده است.")
 
-try:
-    students_ws = sh.worksheet("students")
-except Exception:
-    students_ws = sh.add_worksheet(title="students", rows="1000", cols="10")
-    students_ws.append_row(["timestamp", "chat_id", "name", "phone", "level", "notes"])
 
-try:
-    states_ws = sh.worksheet("states")
-except Exception:
-    states_ws = sh.add_worksheet(title="states", rows="1000", cols="5")
-    states_ws.append_row(["chat_id", "state", "temp"])
-
+# ---------- توابع کمکی ----------
 TELEGRAM_API = f"https://api.telegram.org/bot{TELEGRAM_TOKEN}"
 
 def send_message(chat_id, text, reply_markup=None):
@@ -90,6 +90,7 @@ def save_student(chat_id, name, phone, level, notes=""):
     ts = time.strftime("%Y-%m-%d %H:%M:%S")
     students_ws.append_row([ts, str(chat_id), name, phone, level, notes])
 
+# ---------- OpenAI helper ----------
 if OPENAI_API_KEY:
     openai.api_key = OPENAI_API_KEY
 
@@ -103,6 +104,7 @@ def ask_openai(prompt):
     )
     return resp["choices"][0]["message"]["content"].strip()
 
+# ---------- مسیر وبهوک ----------
 @app.route("/webhook", methods=["POST"])
 def webhook():
     data = request.get_json()
@@ -119,11 +121,7 @@ def handle_message(chat_id, text):
 
     if text == "/start":
         keyboard = {
-            "keyboard": [
-                [{"text": "ثبت‌نام"}],
-                [{"text": "پرسش از AI"}],
-                [{"text": "رفتن به کانال"}]
-            ],
+            "keyboard": [[{"text": "ثبت‌نام"}], [{"text": "پرسش از AI"}], [{"text": "رفتن به کانال"}]],
             "resize_keyboard": True
         }
         send_message(chat_id, "سلام! من ربات آموزش زبان هستم. برای ثبت‌نام دکمهٔ «ثبت‌نام» را بزن.", reply_markup=keyboard)
