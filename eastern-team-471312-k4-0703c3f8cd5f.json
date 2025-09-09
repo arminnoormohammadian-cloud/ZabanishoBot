@@ -1,0 +1,13 @@
+{
+  "type": "service_account",
+  "project_id": "eastern-team-471312-k4",
+  "private_key_id": "0703c3f8cd5f2ec03fd68a1e48b8ca9048c93487",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQCyxIR8TVmfbBsx\nYdcXrxt/ccL2jRBqhs/BW1K268O4j4NLe9k/K+KsohJYuIejEOU7AG0MZFtm62E0\nGF98RT7Xj3a01jwmBrWQxM9Poo8NBInQpSRg6k24WNLtkE5nHiAbL4EjlKew5alc\nAnUu85dCQUM8yy3xENu6tO3Cwrtk/ZgfJBusb2FYp/BpG43ILn+btVKg6doXg0PL\ncOhHstH/qFvq+yVosJF6P3MoHj8pGMAjnPJAjVOtxQ27phNxwgDBhWkBLImp1eli\nHSdGerR5VBa7D6fl9Bu0PURM3egBFtOJic5zY7RtdJb77lAVRVjmSO4c0iJ+NNyO\nl9BBkz7vAgMBAAECggEAOBGQ6Beuk2TpxnxEZSZDvp4kowWtb2vm/2MwNzUNBvbk\nHCm1Aq42AyU2EeOWjxt+ehnxGeDkFgyfSSKX2DcztZJGjgNfjCGwkr5Xs0duDIwu\n2WTiWw9B3x7k0SPgo1D8iupEW6+FRONTUgtnS5mVCG/Fseyb9S7va8jRhbNj6RFl\nsXUGfktC2V4ERn1vXT5jf/nAv+Zdu6uci6QspTPbaCUugL9n0UWEv4ghBlA2F4Nd\nKIcyyxq7My/6WJ+16uUUn8Tv28vPgR8n92DBdoTNNBHMIeo3Lqze6umWoQdVP6i8\n5BKfGuTIWbgp+NrOScZalPmojEhptSFCJ5jCAS0tWQKBgQDv1/uk0cCkssBAtlvF\ndzWfe+zFS0usplmKzbtT5Ra8F9g05/qeQ3bH5k0mjV8xLgFOMi0oXjrQA466Uo0H\naVDqNf+DUvIbZ5H1X0aFXqxKk3zsQ2J7O7iz8MNjDFvWuWiVIOm4GC7L+iwCBuAs\nW9RQ8JlWYkkxqUT8dXfoKexuowKBgQC+z0zubMNfPqjofxRZgEobMNe/90MQ1Xdi\nsQGV0BCp3RhRSGYpQXsF9Mfo9r5zpkJRM61Yvp8a4xoF1kwXPzD3ZgDgYNptswG+\nmZouSbgsb99bvZqBDqnhftiZ6wJYIhS8j8NbH31ApWTB7giiB5KHafHUwYKG4CJJ\nhr/QQWivRQKBgF9P+ZTaNjA9SOFulrG2WfzzBnixH3WQ9eyPLW59j7dX0nfT6GiU\nbtOp1ecIL1gf7CzjC8cLC1w2zbWFsL3NQHaS1uOdRtFVK0/TePbvVJCeY/qQHMbU\nSOZZO4xVEPoX3FPHLJoYIiC1Xl+/075ND+bKdmU50dSGa//XvrroTij5AoGBAKgl\nlFzzucPAOycPfcZVeHi3tRj088Ps6ZUt+QClZ1nZfal7jJPEoX4hNN4GOtU9aWmX\niaYP7bPK9863BzzhMeyCljklALf1LI9jWux5iHSYbZOx5WrfmjMeDhCtedZiyjVU\n10oA2ObUGZOQiUkINUdhxHvBv53N/EkhFv2V9oOlAoGBAJasFu8Zn1I9u137sGPs\n4ObpA1Ty2WoChzqNy80xXghQt9f6NKnVSgV46LDn4hnBY9TCtFnT2sTWupsL/tRu\n4Dt6MInJCUaRYDBNlVliDpKEz39/0IVKOFxd0fSffds3KLBudXKs0sfFHpkvF4z7\nhHKg187hr3gEeHWj65vLGryq\n-----END PRIVATE KEY-----\n",
+  "client_email": "zabanishobotaccount@eastern-team-471312-k4.iam.gserviceaccount.com",
+  "client_id": "111221009121045628420",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/zabanishobotaccount%40eastern-team-471312-k4.iam.gserviceaccount.com",
+  "universe_domain": "googleapis.com"
+}
